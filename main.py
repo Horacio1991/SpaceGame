@@ -4,7 +4,7 @@ from player import Player
 from meteor import Meteor
 
 
-class Game:
+class Main:
     def __init__(self):
         pygame.init()
         pygame.mixer.init()  # Inicio el módulo de sonido
@@ -14,18 +14,19 @@ class Game:
         pygame.display.set_caption("UAI SPACESHIP")  # Nombre de la ventana
 
         # Cargar musica de fondo y sonido de explosión
-        self.background_music = "assets/musica.mp3"
-        self.explosion_sound = pygame.mixer.Sound("assets/explosion.mp3")
+        self.background_music = "sounds/musica.mp3"
+        self.explosion_sound = pygame.mixer.Sound("sounds/explosion.mp3")
         self.explosion_sound.set_volume(0.7)
 
         self.clock = pygame.time.Clock()  # reloj para controlar los FPS
+
         self.running = True  # variable para controlar el bucle principal
 
         # Inicializar jugador y meteoritos
-        self.player = Player()  # Crear el jugador
-        self.meteors = []  # Crear una lista vacía para los meteoritos
+        self.player = Player()  # Instacia del jugador
+        self.meteors = []  # lista vacía para los meteoritos
 
-        # Puntuación y highscore
+        # Puntuación y puntjae máximo
         self.score = 0
         self.highscore = self.load_highscore()
 
@@ -35,15 +36,14 @@ class Game:
         # Temporizador para controlar la generación de meteoritos
         self.meteor_timer = 0
 
-    # metodo para Reproducir música de fondo
+    # Reproducir música de fondo
     def play_background_music(self):
         pygame.mixer.music.load(self.background_music)
         pygame.mixer.music.set_volume(0.5)
         pygame.mixer.music.play(-1)  # Reproducir en bucle
 
-    # metodo para detener la música de fondo
+    # detener la música de fondo
     def stop_background_music(self):
-        """Detiene la música de fondo."""
         pygame.mixer.music.stop()
 
     # metodo para cargar el puntaje máximo desde el archivo txt
@@ -103,7 +103,7 @@ class Game:
 
     def draw(self):
         self.screen.fill(BLACK)
-        self.player.draw(self.screen)
+        self.player.draw(self.screen)  # Dibuja la nave en la pantalla
 
         # Dibujar meteoritos
         for meteor in self.meteors:
@@ -161,5 +161,5 @@ class Game:
 
 
 if __name__ == "__main__":
-    game = Game()
+    game = Main()
     game.run()

@@ -4,12 +4,12 @@ from settings import WIDTH, HEIGHT
 
 class Player:
     def __init__(self):
-        # Cargar y escalar la imagen del jugador
-        self.image = pygame.image.load("assets/SpaceShip.png").convert_alpha()
+        # Cargar y ajustar el tamaño de la imagen de la nave
+        self.image = pygame.image.load("sprites/SpaceShip.png").convert_alpha()
         self.image = pygame.transform.scale(
             self.image, (50, 50))  # tamaño de la nave en pixeles
 
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect()  # area de colisión de la nave
         self.rect.centerx = WIDTH // 2  # Posición inicial en el centro
         self.rect.bottom = HEIGHT - 10  # Posición inicial en la parte inferior
 
